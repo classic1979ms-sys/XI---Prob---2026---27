@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const API_KEY = import.meta.env.VITE_API_KEY
+const API_KEY = "f496bd4307876dcb4a6b75a00894e656"
 const headers = { 'x-api-key': API_KEY }
 
 export default function App() {
@@ -11,12 +11,10 @@ export default function App() {
   useEffect(() => {
     async function loadData() {
       try {
-        // 1. Partite Serie A 2026/27
         const res1 = await fetch('https://v3.football.api-sports.io/fixtures?league=135&season=2026&status=NS', {headers})
         const data1 = await res1.json()
         setMatches(data1.response.slice(0,10))
 
-        // 2. Top Tiratori
         const res2 = await fetch('https://v3.football.api-sports.io/players?league=135&season=2026', {headers})
         const data2 = await res2.json()
         const sorted = data2.response.sort((a,b) => b.statistics[0].shots.on - a.statistics[0].shots.on)
@@ -51,5 +49,5 @@ export default function App() {
         </>
       )}
     </div>
-  )
+  )Apaggiunta API
 }
